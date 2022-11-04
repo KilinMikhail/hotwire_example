@@ -1,0 +1,11 @@
+.container
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    /- if user_signed_in?
+    li.nav-item
+      = link_to "All Articles", articles_path, class: "nav-link active"
+    li.nav-item
+      = link_to "Sign Out", "#", method: :delete, class: "nav-link", id: "Sign out"
+    /-else 
+      li.nav-item
+        = link_to "Sign In", "#", class: "nav-link", id: "Sign in"
+  </ul>
