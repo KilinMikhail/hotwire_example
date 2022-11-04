@@ -13,4 +13,6 @@ class User < ApplicationRecord
   
   has_many :subscribed_users, through: :received_subscribtions, source: :subscriber
   has_many :subscribed_to_users, through: :sent_subscribtions, source: :recepient
+
+  has_many :messages, dependent: :destroy
 end
