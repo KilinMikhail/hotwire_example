@@ -1,8 +1,7 @@
 h2 = @article.title
-= @article.content
+div Content: #{@article.content}
+div Author: #{@article.user.email}
+
 div
   = link_to "Edit", edit_article_path(@article), class: "btn btn-link"
-div
   = button_to "Destroy", @article, method: :delete, class: "btn btn-link"
-div
-  = link_to "Articles", articles_path, class: "btn btn-link"
