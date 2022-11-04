@@ -13,6 +13,7 @@ gem "slim"
 gem "simple_form"
 gem "devise"
 gem "action_policy"
+gem "webpacker"
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
