@@ -1,0 +1,5 @@
+= simple_form_for(@message) do |f|
+  .form-inputs
+    = f.input :content, label: false
+  .form-actions
+    = f.button :submit, 'Submit', class: "btn btn-primary"
