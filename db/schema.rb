@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_04_133707) do
+ActiveRecord::Schema.define(version: 2022_11_04_141213) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,13 @@ ActiveRecord::Schema.define(version: 2022_11_04_133707) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"
     t.index ["user_id"], name: "index_articles_on_user_id"
+  end
+
+  create_table "subscribtions", force: :cascade do |t|
+    t.bigint "recepient_id", null: false
+    t.bigint "subscriber_id", null: false
+    t.index ["recepient_id"], name: "index_subscribtions_on_recepient_id"
+    t.index ["subscriber_id"], name: "index_subscribtions_on_subscriber_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -37,4 +44,6 @@ ActiveRecord::Schema.define(version: 2022_11_04_133707) do
   end
 
   add_foreign_key "articles", "users"
+  add_foreign_key "subscribtions", "users", column: "recepient_id"
+  add_foreign_key "subscribtions", "users", column: "subscriber_id"
 end

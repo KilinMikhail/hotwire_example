@@ -3,5 +3,7 @@ div Content: #{@article.content}
 div Author: #{@article.user.email}
 
 div
-  = link_to "Edit", edit_article_path(@article), class: "btn btn-link"
-  = button_to "Destroy", @article, method: :delete, class: "btn btn-link"
+  - if allowed_to?(:edit?, @article)
+    = link_to "Edit", edit_article_path(@article), class: "btn btn-link"
+  - if allowed_to?(:destroy?, @article)
+    = button_to "Destroy", @article, method: :delete, class: "btn btn-link"

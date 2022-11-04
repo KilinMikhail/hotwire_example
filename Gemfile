@@ -13,6 +13,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem "slim"
 gem "simple_form"
 gem "devise"
+gem "action_policy"
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
