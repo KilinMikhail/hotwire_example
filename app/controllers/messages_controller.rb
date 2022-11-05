@@ -10,6 +10,7 @@ class MessagesController < ApplicationController
     if @message.save
       redirect_to messages_path
     else
+      @messages = Message.all
       render :index, status: :unprocessable_entity
     end
   end
@@ -17,6 +18,6 @@ class MessagesController < ApplicationController
   private
 
   def message_params
-    params.require(:message).permit(:content).merge(user: current_user)
+    params.require(:message).permit(:content, :replied_to_id).merge(user: current_user)
   end
 end
