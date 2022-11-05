@@ -1,7 +1,7 @@
 class MessagesController < ApplicationController
+  before_action :set_messages
   def index
     @message = Message.new
-    @messages = Message.all.order(created_at: :asc)
   end
 
   def create
@@ -18,5 +18,9 @@ class MessagesController < ApplicationController
 
   def message_params
     params.require(:message).permit(:content).merge(user: current_user)
+  end
+
+  def set_messages
+    @messages = Message.all.order(created_at: :asc)
   end
 end

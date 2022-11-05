@@ -6,9 +6,9 @@ class User < ApplicationRecord
   
   has_many :articles, dependent: :destroy
 
-  has_many :sent_subscribtions, class_name: "Subscribtion", foreign_key: :recepient_id,
+  has_many :sent_subscribtions, class_name: "Subscribtion", foreign_key: :subscriber_id,
     inverse_of: :recepient, dependent: :destroy
-  has_many :received_subscribtions, class_name: "Subscribtion", foreign_key: :subscriber_id,
+  has_many :received_subscribtions, class_name: "Subscribtion", foreign_key: :recepient_id,
     inverse_of: :subscriber, dependent: :destroy
   
   has_many :subscribed_users, through: :received_subscribtions, source: :subscriber
