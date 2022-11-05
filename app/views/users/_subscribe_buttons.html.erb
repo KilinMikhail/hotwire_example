@@ -1,0 +1,25 @@
+<%= button_tag(
+  'Subscribe',
+  {
+    data: {
+      reflex: "click->SubscribtionsReflex#subscribe",
+      recepient_id: subscribtion.recepient_id
+    },
+    class: "btn btn-primary",
+    type: :button
+  }
+) unless subscribtion.persisted?
+%>
+<%= button_tag(
+  'Unsubscribe',
+  {
+    data: {
+      subscribtion_id: subscribtion.id,
+      subscribe_buttons_target: 'unsubscribeButton',
+      action: "click->subscribe-buttons#unsubscribe"
+    },
+    class: "btn btn-danger",
+    type: :button
+  }
+) if subscribtion.persisted?
+%>

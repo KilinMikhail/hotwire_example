@@ -1,2 +1,14 @@
+hr
 div
-  | #{message.user.email}: #{message.content}
+  - if message.replied_to.present?
+    div
+      strong
+        |Replied to:
+      i
+        = message.replied_to.content
+  strong = message.user.email
+  |: 
+  span.content
+    = message.content
+  span data-message-id="#{message.id}" data-action="click->messages#reply" class="btn btn-secondary"
+    |  Reply

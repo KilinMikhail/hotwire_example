@@ -1,5 +1,10 @@
 = simple_form_for(@message) do |f|
   .form-inputs
     = f.input :content, label: false
+    = f.hidden_field :replied_to_id, value: nil, data: { messages_target: "repliedToId" }
   .form-actions
     = f.button :submit, 'Submit', class: "btn btn-primary"
+  div
+    i data-messages-target="repliedToText"
+  div
+    = button_tag "Cancel reply", type: :button, data: { messages_target: "removeReplyButton", action: "click->messages#removeReply" }, class: "hidden"

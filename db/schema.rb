@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_04_143019) do
+ActiveRecord::Schema.define(version: 2022_11_04_205610) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 2022_11_04_143019) do
     t.text "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "replied_to_id"
+    t.index ["replied_to_id"], name: "index_messages_on_replied_to_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
@@ -52,6 +54,7 @@ ActiveRecord::Schema.define(version: 2022_11_04_143019) do
   end
 
   add_foreign_key "articles", "users"
+  add_foreign_key "messages", "messages", column: "replied_to_id"
   add_foreign_key "messages", "users"
   add_foreign_key "subscribtions", "users", column: "recepient_id"
   add_foreign_key "subscribtions", "users", column: "subscriber_id"

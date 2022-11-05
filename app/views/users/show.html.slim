@@ -1,5 +1,3 @@
 h2 = @user.email
-= simple_form_for @subscribtion do |f|
-  = f.hidden_field :recepient_id, value: @subscribtion.recepient_id
-  = f.button :submit, 'Subscribe', class: "btn btn-primary" unless @subscribtion.persisted?
-  = button_to "Destroy", @subscribtion, method: :delete, class: "btn btn-danger" if @subscribtion.persisted?
+div#subscribe-buttons data-controller="subscribe-buttons"
+  = render(partial: "users/subscribe_buttons", locals: {subscribtion: @subscribtion})
