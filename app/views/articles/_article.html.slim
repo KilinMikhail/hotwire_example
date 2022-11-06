@@ -1,2 +1,8 @@
-article
-  = link_to article.title, article
+= turbo_frame_tag article do
+  hr
+  article
+    = link_to article.title, article, data: { turbo: true, turbo_frame: "_top" }
+    - if allowed_to?(:edit?, article)
+      = link_to "Edit", edit_article_path(article), class: "btn btn-secondary"
+    - if allowed_to?(:destroy?, article)
+      = link_to "Destroy", article, class: "btn btn-danger", data: { turbo: true, turbo_method: :delete }

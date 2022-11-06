@@ -1,5 +1,7 @@
 = content_for(:messages) { "active" }
 
+= turbo_stream_from(:messages)
+
 div data-controller="messages"
   = render @messages
   = render "form"

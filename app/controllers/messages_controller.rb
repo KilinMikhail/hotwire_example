@@ -17,6 +17,12 @@ class MessagesController < ApplicationController
 
   private
 
+  def broadcast_message
+    Turbo::StreamsChannel.broadcast_render_to(
+      [:messages], template: "messages/created", locals: { message: @message }
+    )
+  end
+
   def message_params
     params.require(:message).permit(:content, :replied_to_id).merge(user: current_user)
   end

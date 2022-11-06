@@ -2,6 +2,7 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: %i[ show edit update destroy ]
 
   def index
+    @article = Article.new
     @articles = Article.all
   end
 
@@ -20,7 +21,6 @@ class ArticlesController < ApplicationController
     @article = Article.new(article_params)
 
     if @article.save
-      redirect_to @article
     else
       render :new, status: :unprocessable_entity
     end
@@ -29,7 +29,7 @@ class ArticlesController < ApplicationController
   def update
     authorize! @article
     if @article.update(article_params)
-      redirect_to @article
+      redirect_to articles_path
     else
       render :edit, status: :unprocessable_entity
     end
@@ -38,7 +38,11 @@ class ArticlesController < ApplicationController
   def destroy
     authorize! @article
     @article.destroy
-    redirect_to articles_url
+
+    respond_to do |format|
+      format.html         { redirect_to articles_url }
+      format.turbo_stream { render turbo_stream: turbo_stream.remove(@article) }
+    end
   end
 
   private
