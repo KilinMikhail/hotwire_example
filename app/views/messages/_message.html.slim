@@ -4,7 +4,7 @@ div
     div
       strong
         |Replied to:
-      i
+      i class="js-reply-to-message-#{message.replied_to.id}"
         = message.replied_to.content
   strong = message.user.email
   |: 
@@ -12,3 +12,6 @@ div
     = message.content
   span data-message-id="#{message.id}" data-action="click->messages#reply" class="btn btn-secondary"
     |  Reply
+  span
+    - if allowed_to?(:edit?, message)
+      = link_to "Edit", edit_message_path(message)

@@ -3,5 +3,8 @@
 = turbo_stream_from(:messages)
 
 div data-controller="messages"
-  = render @messages
+  - @messages.each do |message|
+    = turbo_frame_tag message do
+      = render message
   = render "form"
+  = render "reply"
