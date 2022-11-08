@@ -15,7 +15,8 @@ gem "devise"
 gem "action_policy"
 gem "webpacker"
 gem "stimulus_reflex", "~> 3.4"
-gem 'redis-rails'
+gem 'turbo-rails'
+gem 'redis', '~> 4.0'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

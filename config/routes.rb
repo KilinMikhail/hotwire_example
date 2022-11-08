@@ -4,6 +4,6 @@ Rails.application.routes.draw do
 
   resources :articles
   resources :users, only: [:show, :index]
-  resources :messages, only: [:index, :create]
+  resources :messages, only: [:index, :create, :show, :edit, :update]
   resources :subscribtions, only: [:create, :destroy]
 end

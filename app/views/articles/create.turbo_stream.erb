@@ -1,0 +1,2 @@
+<%= turbo_stream.replace Article.new, partial: 'add_article_button' %>
+<%= turbo_stream.before Article.new, partial: 'article', locals: { article: @article } %>

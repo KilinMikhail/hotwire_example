@@ -1,0 +1,4 @@
+div
+  i data-messages-target="repliedToText"
+div
+  = button_tag "Cancel reply", type: :button, data: { messages_target: "removeReplyButton", action: "click->messages#removeReply" }, class: "hidden"

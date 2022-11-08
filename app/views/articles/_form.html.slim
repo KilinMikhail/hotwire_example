@@ -1,6 +1,7 @@
-= simple_form_for(article) do |f|
-  .form-inputs
-    = f.input :title
-    = f.input :content
-  .form-actions
-    = f.button :submit, 'Submit', class: "btn btn-primary"
+= turbo_frame_tag article do
+  = simple_form_for(article) do |f|
+    .form-inputs
+      = f.input :title
+      = f.input :content
+    .form-actions
+      = f.button :submit, 'Submit', class: "btn btn-primary"
