@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
   before_action :set_messages
-  before_action :set_message, only: [:show, :edit, :update]
+  before_action :set_message, only: [:show, :edit, :update, :destroy]
 
 
   def index
@@ -34,6 +34,17 @@ class MessagesController < ApplicationController
     else
       @messages = Message.all
       render :index, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    authorize! @message
+
+    @message.destroy
+
+    respond_to do |format|
+      format.html { redirect_to messages_path }
+      format.turbo_stream { render turbo_stream: turbo_stream.remove(@message) }
     end
   end
 

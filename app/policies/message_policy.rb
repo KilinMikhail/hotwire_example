@@ -5,4 +5,5 @@ class MessagePolicy < ApplicationPolicy
 
   alias edit? manage?
   alias update? manage?
+  alias destroy? manage?
 end

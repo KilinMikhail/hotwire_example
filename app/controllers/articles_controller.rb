@@ -28,10 +28,13 @@ class ArticlesController < ApplicationController
 
   def update
     authorize! @article
-    if @article.update(article_params)
-      redirect_to articles_path
-    else
-      render :edit, status: :unprocessable_entity
+    respond_to do |format|
+      if @article.update(article_params)
+        format.html { redirect_to articles_path }
+        format.turbo_stream { render turbo_stream: turbo_stream.update(@article) }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+      end
     end
   end
 
