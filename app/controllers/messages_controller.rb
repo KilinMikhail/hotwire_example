@@ -62,12 +62,6 @@ class MessagesController < ApplicationController
     )
   end
 
-  def broadcast_message_destroyed
-    Turbo::StreamsChannel.broadcast_render_to(
-      [:messages], template: "messages/destroyed"
-    )
-  end
-
   def message_params
     params.require(:message).permit(:content, :replied_to_id).merge(user: current_user)
   end
