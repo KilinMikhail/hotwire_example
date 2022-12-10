@@ -15,3 +15,6 @@ div
   span
     - if allowed_to?(:edit?, message)
       = link_to "Edit", edit_message_path(message)
+	span
+		- if allowed_to? :destroy?, message
+			= link_to "Destroy", message, data: { turbo: true, turbo_method: :delete }

@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
   before_action :set_messages
-  before_action :set_message, only: [:show, :edit, :update]
+  before_action :set_message, only: [:show, :edit, :update, :destroy]
 
 
   def index
@@ -37,6 +37,17 @@ class MessagesController < ApplicationController
     end
   end
 
+  def destroy
+    authorize! @message
+
+    @message.destroy
+
+    respond_to do |format|
+      format.html { redirect_to messages_path }
+      format.turbo_stream { render turbo_stream: turbo_stream.remove(@message) }
+    end
+  end
+
   private
 
   def broadcast_message_created
@@ -48,6 +59,12 @@ class MessagesController < ApplicationController
   def broadcast_message_updated
     Turbo::StreamsChannel.broadcast_render_to(
       [:messages], template: "messages/updated", locals: { message: @message }
+    )
+  end
+
+  def broadcast_message_destroyed
+    Turbo::StreamsChannel.broadcast_render_to(
+      [:messages], template: "messages/destroyed"
     )
   end
 
